@@ -16,10 +16,10 @@ public class HackProofInt {
 			if( !Check () ) {
 				throw new System.Security.SecurityException("unexpected value change detected");
 			}
-			return m_value - m_magic;
+			return unchecked(m_value - m_magic);
 		}
 		set {
-			m_value = value + m_magic;
+			m_value = unchecked(value + m_magic);
 			m_hash = m_hmac.ComputeHash( System.BitConverter.GetBytes(m_value) );
 		}
 	}
